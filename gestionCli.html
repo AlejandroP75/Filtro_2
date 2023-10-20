@@ -26,14 +26,23 @@
         <div>
             <a href="#close" title="Close" class="close">X</a>
             <h1>Registrar cliente</h1><hr>
-            <input type="text" placeholder="Numero de documento" id="nueDoc"><br>
-            <input type="text" placeholder="Nombre" id="nueNom"><br>
-            <input type="text" placeholder="Apellido" id="nueApe"><br>
-            <input type="text" placeholder="Telefono" id="nueTel"><br>
-            <input type="text" placeholder="Correo" id="nueCor"><br>
-            <input type="text" placeholder="Fecha de nacimiento" id="nueEdad"><br>
-            <input type="text" placeholder="Nacionalidad" id="nueNacio"><br>
-            <button id="botAñadirCli">Enviar</button>
+            <form id="formularioAñadir">
+                <label for="nueDoc">Numero de documento: </label>
+                <input type="number" id="nueDoc"><br>
+                <label for="nueNom">Nombre: </label>
+                <input type="text" id="nueNom"><br>
+                <label for="nueApe">Apellido: </label>
+                <input type="text" id="nueApe"><br>
+                <label for="nueTel">Telefono: </label>
+                <input type="number" id="nueTel"><br>
+                <label for="nueCor">Correo electronico: </label>
+                <input type="email" id="nueCor"><br>
+                <label for="nueEdad">Fecha de nacimiento: </label>
+                <input type="date" id="nueEdad"><br>
+                <label for="nueNacio">Pais de nacimiento: </label>
+                <input type="text" id="nueNacio">
+            </form>
+            <a><button id="botAñadirCli" onclick="registrarCliente()">Enviar</button></a>
         </div>
     </div>
     <ul id="listClientes"></ul>
