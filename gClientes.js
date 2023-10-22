@@ -1,4 +1,3 @@
-let selectBus = document.getElementById("selectBus");
 let aBuscar = document.getElementById("aBuscar");
 let selectOrd = document.getElementById("selectOrd");
 let nueDoc = document.getElementById("nueDoc");
@@ -10,11 +9,11 @@ let nueEdad = document.getElementById("nueEdad");
 let nueNacio = document.getElementById("nueNacio");
 let botAñadirCli = document.getElementById("botAñadirCli");
 let listClientes = document.getElementById("listClientes");
-let formularioAñadir = document.getElementById("formularioAñadir")
+let formularioAñadir = document.getElementById("formularioAñadir");
 let clientes = [];
 
 class cliente {
-    constructor(documento, nombre, apellido, telefono, correo, edad, nacionalidad){
+    constructor(documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos){
         this.documento = documento;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -22,6 +21,7 @@ class cliente {
         this.correo = correo;
         this.edad = edad;
         this.nacionalidad = nacionalidad;
+        this.puntos = puntos;
     }
     modificar(documento, nombre, apellido, telefono, correo, edad, nacionalidad){
         this.documento = documento;
@@ -34,35 +34,51 @@ class cliente {
     }
 }
 
-nueCli1 = new cliente(1007788706, "Alejandro", "Palacio", 3222039907, "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano");
-nueCli2 = new cliente(1007788705, "David", "Pabon", 3112277265, "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano");
-nueCli3 = new cliente(1007788703, "Ingrid", "Lopez", 80539155, "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano");
-nueCli4 = new cliente(1007788702, "Noel", "Soto", 35417060, "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano");
-nueCli5 = new cliente(1007788701, "Camila", "Martinez", 1007788706, "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano");
+nueCli1 = new cliente("1007788706", "Alejandro", "Palacio", "3222039907", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+nueCli2 = new cliente("2007788705", "David", "Pabon", "3112277265", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+nueCli3 = new cliente("37788703", "Ingrid", "Lopez", "80539155", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+nueCli4 = new cliente("8007788702", "Alejo", "Soto", "35417060", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+nueCli5 = new cliente("9000007788701", "Camila", "Martinez", "1007788706", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
 clientes.push(nueCli1);
 clientes.push(nueCli2);
 clientes.push(nueCli3);
 clientes.push(nueCli4);
 clientes.push(nueCli5);
 
-function listar(){
+obtenerOrdenSeleccionadoGuardado();
+obtenerClientesGuardados();
 
+function obtenerOrdenSeleccionadoGuardado() {
+    const ordenGuardado = localStorage.getItem("ordenSeleccionado");
+    if (ordenGuardado) {
+        selectOrd.value = ordenGuardado;
+        ordenar();
+    }
+}
+
+function obtenerClientesGuardados() {
+    const clientesGuardados = localStorage.getItem("clientes");
+    if (clientesGuardados) {
+        clientes = JSON.parse(clientesGuardados);
+        listar(clientes);
+    }
+}
+
+function listar(array){
     while(listClientes.firstChild){
         listClientes.removeChild(listClientes.firstChild);
     }
-
     let contenedor = document.createElement("div");
-
-    for(let i = 0; i < clientes.length; i++){
+    for(let i = 0; i < array.length; i++){
         let cliente = document.createElement("li");
         let enlaceMod = document.createElement("a");
         enlaceMod.setAttribute("href", "#openModalMod");
         let botModificar = document.createElement("button");
-        botModificar.setAttribute("onclick", "modificarModal(" + clientes[i].documento + ")");
+        botModificar.setAttribute("onclick", "modificarModal(" + array[i].documento + ")");
         let botEliminar = document.createElement("button");
-        botEliminar.setAttribute("onclick", "eliminarCliente()");
+        botEliminar.setAttribute("onclick", "eliminarCliente(" + array[i].documento + ")");
 
-        cliente.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + clientes[i].nombre + " " + clientes[i].apellido + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Documento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + clientes[i].documento;
+        cliente.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].nombre + " " + array[i].apellido + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Documento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].documento;
         botModificar.textContent = "Modificar";
         botEliminar.textContent = "Eliminar";
 
@@ -72,6 +88,46 @@ function listar(){
         contenedor.appendChild(botEliminar);
     }
     listClientes.appendChild(contenedor);
+}
+
+function ordenar(){
+    if(selectOrd.value == "asend"){
+        clientes.sort(function (a, b) {
+            if (a.nombre > b.nombre) {
+              return 1;
+            }
+            if (a.nombre < b.nombre) {
+              return -1;
+            }
+            return 0;
+          });
+    }else{
+        clientes.sort(function (a, b) {
+            if (a.nombre < b.nombre) {
+              return 1;
+            }
+            if (a.nombre > b.nombre) {
+              return -1;
+            }
+            return 0;
+          });
+    }
+    listar(clientes);
+}
+
+function buscar(){
+    let nuevoArray = [];
+
+    for(let i = 0; i < clientes.length; i++){
+        if(clientes[i].nombre.startsWith(aBuscar.value)){
+            nuevoArray.push(clientes[i]);
+        }else if(clientes[i].apellido.startsWith(aBuscar.value)){
+            nuevoArray.push(clientes[i]);
+        }else if(clientes[i].documento.startsWith(aBuscar.value)){
+            nuevoArray.push(clientes[i]);
+        }
+    }
+    listar(nuevoArray);
 }
 
 function registrarCliente(){
@@ -98,9 +154,10 @@ function registrarCliente(){
             return
         }
     }
-    nueCli = new cliente(nueDoc.value, nueNom.value, nueApe.value, nueTel.value, nueCor.value, nueEdad.value, nueNacio.value);
+    nueCli = new cliente(nueDoc.value, nueNom.value, nueApe.value, nueTel.value, nueCor.value, nueEdad.value, nueNacio.value, 0);
     clientes.push(nueCli);
-    listar();
+    ordenar();
+    guardarClientes();
     formularioAñadir.reset();
 }
 
@@ -137,20 +194,45 @@ function modificarCliente(documento){
             alert("Numero de documento ya registrado");
             return
         }
-        var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-        if(!regex.test(modCor.value)){
-            alert("Ingrese un correo valido");
-            return
-        }
+    }
+    var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if(!regex.test(modCor.value)){
+        alert("Ingrese un correo valido");
+        return
+    }
+    for(let i = 0; i < clientes.length; i++){
         if(documento == clientes[i].documento){
+            documento = modDoc.value;
             clientes[i].modificar(modDoc.value, modNom.value, modApe.value, modTel.value, modCor.value, modEdad.value, modNacio.value);
+            
         }
     }
-    listar();
+    ordenar();
+    guardarClientes();
 }
 
-function eliminarCliente(){
-    console.log("this is another test");
+function eliminarCliente(documento){
+    for(let i = 0; i < clientes.length; i++){
+        if(documento == clientes[i].documento){
+            clientes.splice(i, 1);
+        }
+    }
+    ordenar();
+    guardarClientes();
 }
 
-document.addEventListener("DOMContentLoaded", listar);
+function guardarOrdenSeleccionado() {
+    localStorage.setItem("ordenSeleccionado", selectOrd.value);
+}
+
+function guardarClientes() {
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+
+aBuscar.addEventListener("input", buscar);
+selectOrd.addEventListener("change", ordenar);
+selectOrd.addEventListener("change", function () {
+    guardarOrdenSeleccionado();
+    ordenar();
+});
+document.addEventListener("DOMContentLoaded", ordenar);

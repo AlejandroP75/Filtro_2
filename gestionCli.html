@@ -4,22 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpg" href="img/favicon.png"/>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles1.css">
     <title>Gestión Clientes</title>
 </head>
 <body>
     <h1>Gestión de clientes</h1>
-    <label for="selectBus">Buscar cliente por: </label>
-    <select name="selectBus" id="selectBus">
-        <option value="nom">Nombre</option>
-        <option value="ape">Apellido</option>
-        <option value="doc">Documento de identidad</option>
-    </select>
-    <input type="text" placeholder="Ingrese el dato" id="aBuscar"><br>
+    <label for="aBuscar">Buscar cliente: </label>
+    <input type="text" placeholder="Ingrese el nombre, apellido o numero de documento" id="aBuscar"><br>
     <label for="selectOrd">Ordenar por</label>
     <select name="selectOrd" id="selectOrd">
-        <option value="asend">Orden alfabetico asendente</option>
-        <option value="desen">Orden alfabetico desendente</option>
+        <option value="asend">Orden ascendente</option>
+        <option value="desen">Orden descendente</option>
     </select><br>
     <a href="#openModal"><button>Registrar nuevo cliente</button></a>
     <div id="openModal" class="modalDialog">
@@ -46,6 +41,6 @@
         </div>
     </div>
     <ul id="listClientes"></ul>
-    <script src="app.js"></script>
+    <script src="gClientes.js"></script>
 </body>
 </html>
