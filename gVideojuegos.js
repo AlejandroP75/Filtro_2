@@ -1,12 +1,11 @@
-let aBuscar = document.getElementById("aBuscar");
-let selectOrd = document.getElementById("selectOrd");
-let nueNom = document.getElementById("nueNom");
+let aBuscarVid = document.getElementById("aBuscarVid");
+let selectOrdVid = document.getElementById("selectOrdVid");
+let nueTit = document.getElementById("nueTit");
 let nueGen = document.getElementById("nueGen");
 let nueVal = document.getElementById("nueVal");
 let nuePun = document.getElementById("nuePun");
-let botAñadirVideoj = document.getElementById("botAñadirVideoj");
 let listVideojuegos = document.getElementById("listVideojuegos");
-let formularioAñadir = document.getElementById("formularioAñadir");
+let formularioAñadirVid = document.getElementById("formularioAñadirVid");
 let videojuegos = [];
 
 class videojuego {
@@ -19,11 +18,11 @@ class videojuego {
     }
 }
 
-nueVid1 = new videojuego(1, "Hollow Knight", "Plataformas", "25000", "25");
-nueVid2 = new videojuego(2, "BioShock", "Accion", "50000", "50");
-nueVid3 = new videojuego(3, "Smash Bros", "Peleas", "200000", "200");
-nueVid4 = new videojuego(4, "Phasmofobia", "Terror", "45000", "45");
-nueVid5 = new videojuego(5, "Blur", "Carreras", "50000", "50");
+let nueVid1 = new videojuego(1, "Hollow Knight", "Plataformas", "25000", "25");
+let nueVid2 = new videojuego(2, "BioShock", "Accion", "50000", "50");
+let nueVid3 = new videojuego(3, "Smash Bros", "Peleas", "200000", "200");
+let nueVid4 = new videojuego(4, "Phasmofobia", "Terror", "45000", "45");
+let nueVid5 = new videojuego(5, "Blur", "Carreras", "50000", "50");
 videojuegos.push(nueVid1);
 videojuegos.push(nueVid2);
 videojuegos.push(nueVid3);
@@ -34,12 +33,12 @@ obtenerOrdenSeleccionadoGuardado();
 obtenerVideojuegosGuardados();
 
 function obtenerOrdenSeleccionadoGuardado() {
-    const ordenGuardado = localStorage.getItem("ordenSeleccionado");
+    const ordenGuardado = localStorage.getItem("ordenSeleccionadoVid");
     if (ordenGuardado) {
-        selectOrd.value = ordenGuardado;
+        selectOrdVid.value = ordenGuardado;
         ordenar();
     }
-}
+}   
 
 function obtenerVideojuegosGuardados() {
     const videojuegosGuardados = localStorage.getItem("videojuegos");
@@ -76,7 +75,7 @@ function listar(array){
 }
 
 function ordenar(){
-    if(selectOrd.value == "asend"){
+    if(selectOrdVid.value == "asend"){
         videojuegos.sort(function (a, b) {
             if (a.nombre > b.nombre) {
               return 1;
@@ -104,7 +103,7 @@ function buscar(){
     let nuevoArray = [];
 
     for(let i = 0; i < videojuegos.length; i++){
-        if(videojuegos[i].nombre.startsWith(aBuscar.value)){
+        if(videojuegos[i].nombre.startsWith(aBuscarVid.value)){
             nuevoArray.push(videojuegos[i]);
         }
     }
@@ -112,21 +111,21 @@ function buscar(){
 }
 
 function registrarVideojuego(){
-    if((nueNom.value == "") || (nueGen.value == "") || (nueVal.value == "") || (nuePun.value == "")){
+    if((nueTit.value == "") || (nueGen.value == "") || (nueVal.value == "") || (nuePun.value == "")){
         alert("Por favor rellene todos los campos");
         return
     }
     for(let i = 0; i < videojuegos.length; i++){
-        if(nueNom.value == videojuegos[i].nombre){
+        if(nueTit.value == videojuegos[i].nombre){
             alert("Nombre ya registrado");
             return
         }
     }
-    nueVid = new videojuego((videojuegos.length + 1), nueNom.value, nueGen.value, nueVal.value, nuePun.value);
+    let nueVid = new videojuego((videojuegos.length + 1), nueTit.value, nueGen.value, nueVal.value, nuePun.value);
     videojuegos.push(nueVid);
     ordenar();
     guardarVideojuegos();
-    formularioAñadir.reset();
+    formularioAñadirVid.reset();
 }
 
 function verModal(id){
@@ -154,16 +153,16 @@ function eliminarVideojuego(id){
 }
 
 function guardarOrdenSeleccionado() {
-    localStorage.setItem("ordenSeleccionado", selectOrd.value);
+    localStorage.setItem("ordenSeleccionado", selectOrdVid.value);
 }
 
 function guardarVideojuegos() {
     localStorage.setItem("videojuegos", JSON.stringify(videojuegos));
 }
 
-aBuscar.addEventListener("input", buscar);
-selectOrd.addEventListener("change", ordenar);
-selectOrd.addEventListener("change", function () {
+aBuscarVid.addEventListener("input", buscar);
+selectOrdVid.addEventListener("change", ordenar);
+selectOrdVid.addEventListener("change", function () {
     guardarOrdenSeleccionado();
     ordenar();
 });

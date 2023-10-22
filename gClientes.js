@@ -1,5 +1,5 @@
-let aBuscar = document.getElementById("aBuscar");
-let selectOrd = document.getElementById("selectOrd");
+let aBuscarCli = document.getElementById("aBuscarCli");
+let selectOrd = document.getElementById("selectOrdCli");
 let nueDoc = document.getElementById("nueDoc");
 let nueNom = document.getElementById("nueNom");
 let nueApe = document.getElementById("nueApe");
@@ -7,10 +7,9 @@ let nueTel = document.getElementById("nueTel");
 let nueCor = document.getElementById("nueCor");
 let nueEdad = document.getElementById("nueEdad");
 let nueNacio = document.getElementById("nueNacio");
-let botAñadirCli = document.getElementById("botAñadirCli");
 let listClientes = document.getElementById("listClientes");
-let formularioAñadir = document.getElementById("formularioAñadir");
-let clientes = [];
+let formularioAñadirCli = document.getElementById("formularioAñadirCli");
+let clientes = []
 
 class cliente {
     constructor(documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos){
@@ -23,7 +22,7 @@ class cliente {
         this.nacionalidad = nacionalidad;
         this.puntos = puntos;
     }
-    modificar(documento, nombre, apellido, telefono, correo, edad, nacionalidad){
+    modificar(documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos){
         this.documento = documento;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,14 +30,15 @@ class cliente {
         this.correo = correo;
         this.edad = edad;
         this.nacionalidad = nacionalidad;
+        this.puntos = puntos;
     }
 }
 
-nueCli1 = new cliente("1007788706", "Alejandro", "Palacio", "3222039907", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
-nueCli2 = new cliente("2007788705", "David", "Pabon", "3112277265", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
-nueCli3 = new cliente("37788703", "Ingrid", "Lopez", "80539155", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
-nueCli4 = new cliente("8007788702", "Alejo", "Soto", "35417060", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
-nueCli5 = new cliente("9000007788701", "Camila", "Martinez", "1007788706", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+let nueCli1 = new cliente("1007788706", "Alejandro", "Palacio", "3222039907", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+let nueCli2 = new cliente("2007788705", "David", "Pabon", "3112277265", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+let nueCli3 = new cliente("37788703", "Ingrid", "Lopez", "80539155", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+let nueCli4 = new cliente("8007788702", "Alejo", "Soto", "35417060", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
+let nueCli5 = new cliente("9000007788701", "Camila", "Martinez", "1007788706", "diego_palacio5@hotmail.com", "2001-01-11", "Colombiano", 0);
 clientes.push(nueCli1);
 clientes.push(nueCli2);
 clientes.push(nueCli3);
@@ -49,7 +49,7 @@ obtenerOrdenSeleccionadoGuardado();
 obtenerClientesGuardados();
 
 function obtenerOrdenSeleccionadoGuardado() {
-    const ordenGuardado = localStorage.getItem("ordenSeleccionado");
+    const ordenGuardado = localStorage.getItem("ordenSeleccionadoCli");
     if (ordenGuardado) {
         selectOrd.value = ordenGuardado;
         ordenar();
@@ -119,11 +119,11 @@ function buscar(){
     let nuevoArray = [];
 
     for(let i = 0; i < clientes.length; i++){
-        if(clientes[i].nombre.startsWith(aBuscar.value)){
+        if(clientes[i].nombre.startsWith(aBuscarCli.value)){
             nuevoArray.push(clientes[i]);
-        }else if(clientes[i].apellido.startsWith(aBuscar.value)){
+        }else if(clientes[i].apellido.startsWith(aBuscarCli.value)){
             nuevoArray.push(clientes[i]);
-        }else if(clientes[i].documento.startsWith(aBuscar.value)){
+        }else if(clientes[i].documento.startsWith(aBuscarCli.value)){
             nuevoArray.push(clientes[i]);
         }
     }
@@ -154,11 +154,11 @@ function registrarCliente(){
             return
         }
     }
-    nueCli = new cliente(nueDoc.value, nueNom.value, nueApe.value, nueTel.value, nueCor.value, nueEdad.value, nueNacio.value, 0);
+    let nueCli = new cliente(nueDoc.value, nueNom.value, nueApe.value, nueTel.value, nueCor.value, nueEdad.value, nueNacio.value, 0);
     clientes.push(nueCli);
     ordenar();
     guardarClientes();
-    formularioAñadir.reset();
+    formularioAñadirCli.reset();
 }
 
 function modificarModal(documento){
@@ -203,7 +203,7 @@ function modificarCliente(documento){
     for(let i = 0; i < clientes.length; i++){
         if(documento == clientes[i].documento){
             documento = modDoc.value;
-            clientes[i].modificar(modDoc.value, modNom.value, modApe.value, modTel.value, modCor.value, modEdad.value, modNacio.value);
+            clientes[i].modificar(modDoc.value, modNom.value, modApe.value, modTel.value, modCor.value, modEdad.value, modNacio.value, 0);
             
         }
     }
@@ -229,7 +229,7 @@ function guardarClientes() {
     localStorage.setItem("clientes", JSON.stringify(clientes));
 }
 
-aBuscar.addEventListener("input", buscar);
+aBuscarCli.addEventListener("input", buscar);
 selectOrd.addEventListener("change", ordenar);
 selectOrd.addEventListener("change", function () {
     guardarOrdenSeleccionado();
