@@ -24,6 +24,7 @@ function obtenerVideojuegosGuardados() {
 obtenerClientesGuardados();
 obtenerVideojuegosGuardados();
 
+
 function listarCli(array){
     while(listClientesCom.firstChild){
         listClientesCom.removeChild(listClientesCom.firstChild);
