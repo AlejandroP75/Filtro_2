@@ -31,16 +31,17 @@ function listarCli(array){
     let contenedor = document.createElement("div");
     for(let i = 0; i < array.length; i++){
         let cliente = document.createElement("li"); 
+        cliente.setAttribute("class", "contCliente");
         let radio = document.createElement("input");
         radio.setAttribute("type", "radio");
         radio.setAttribute("name", "cliente");
         radio.setAttribute("id", array[i].documento);
         radio.setAttribute("value", array[i].documento);
 
-        cliente.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].nombre + " " + array[i].apellido + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Documento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].documento;
+        cliente.innerHTML = "<strong>" + array[i].nombre + " " + array[i].apellido + "</strong>" + array[i].documento;
         
+        cliente.appendChild(radio);
         contenedor.appendChild(cliente);
-        contenedor.appendChild(radio);
     }
     listClientesCom.appendChild(contenedor);
 }
@@ -52,16 +53,17 @@ function listarVid(array){
     let contenedor = document.createElement("div");
     for(let i = 0; i < array.length; i++){
         let videojuego = document.createElement("li");
+        videojuego.setAttribute("class", "contVideojuego");
         let radio = document.createElement("input");
         radio.setAttribute("type", "radio");
         radio.setAttribute("name", "videojuego");
         radio.setAttribute("id", array[i].id);
         radio.setAttribute("value", array[i].id);
 
-        videojuego.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].nombre + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Genero:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].genero + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Valor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].valor;
+        videojuego.innerHTML = "<strong>" + array[i].nombre + "</strong>" + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(array[i].valor);
 
+        videojuego.appendChild(radio);
         contenedor.appendChild(videojuego);
-        contenedor.appendChild(radio);
     }
     listVideojuegosCom.appendChild(contenedor);
 }
@@ -120,7 +122,7 @@ function comprar(){
         existeDiv.parentNode.removeChild(existeDiv);
     }
     let div = document.createElement("div");
-    div.innerHTML = '<div id="openModalRecibo" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1>Gracias por su compra</h1><hr><h2>Factura</h2><p><strong></strong></p><p><strong>Nombre del cliente: </strong>' + nomCli + '</p><p><strong>Titulo del videojuego: </strong>' + nombre + '</p><p><strong>Valor del videojuego: </strong>' + valor + '</p><strong>Puntos por compra: </strong>' + puntos + '</p><p><strong>IVA:</strong>' + impIVA + '</p><p><strong>Impuesto especial: </strong>' + impEs + '</p><hr><p><strong>Total a pagar: </strong>' + total + '</p></div></div>';
+    div.innerHTML = '<div id="openModalRecibo" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1 class="tituloModal">Gracias por su compra</h1><hr><h2 class = "espForm">Factura</h2><p><strong></strong></p><p class = "espForm">Nombre del cliente: ' + nomCli + '</p><p class = "espForm">Titulo del videojuego: ' + nombre + '</p><p class = "espForm">Valor del videojuego: ' + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(valor) + '</p><p class = "espForm">Puntos por compra: ' + puntos + '</p><p class = "espForm">IVA: ' + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(impIVA) + '</p><p class = "espForm">Impuesto especial: ' + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(impEs) + '</p><hr><p class = "espForm">Total a pagar: ' + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(total) + '</p></div></div>';
     modalFactura.appendChild(div);
 }
 

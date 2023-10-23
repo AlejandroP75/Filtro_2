@@ -8,14 +8,38 @@
     <title>Compra videojuegos</title>
 </head>
 <body>
-    <h1>Compra de videojuegos</h1>
-    <h2>Lista de clientes</h2>
-    <ul id="listClientesCom"></ul>
-    <h2>Lista de videojuegos</h2>
-    <ul id="listVideojuegosCom"></ul>
-    <a href="#openModalRecibo"><button onclick="comprar()">Comprar</button></a>
-    <div id="modalFactura"></div>
-
+    <nav>
+        <a href="index.html" class="logoInicio">
+            <img src="img/favicon.png" alt="Logo" class="logo">
+            <h1 class="titulo">Campus GameSoft</h1>
+        </a>
+        <ul>
+            <a href="gestionCli.html" class="navv"><li>Gestión de clientes</li></a>
+            <a href="gestionVid.html" class="navv"><li>Gestión de videojuegos</li></a>
+            <a href="compraVid.html" class="navv"><li>Compra de videjuegos</li></a>
+            <a href="puntos.html" class="navv"><li>Puntos de fidelización</li></a>
+        </ul>
+    </nav>
+    <img src="img/compras.png" class="imgPrincipal">
+    <div class="contenido">
+        <br>
+        <h1 class="titulo">Compra de videojuegos</h1><br><hr>
+        <div class="listas">
+            <div class="clientes">
+                <h2 class="subTitulo">Lista de clientes</h2>
+                <ul id="listClientesCom"></ul>
+            </div>
+            <div class="videojuegos">
+                <h2 class="subTitulo">Lista de videojuegos</h2>
+                <ul id="listVideojuegosCom"></ul>
+            </div>
+        </div>
+        <a href="#openModalRecibo"><button onclick="comprar()" class="comprar">Comprar</button></a>
+        <div id="modalFactura"></div>
+    </div>
+    <footer>
+        <h2>Desarrolado por: Alejandro Palacio Herrera</h2>
+    </footer>
     <script src="cVideojuegos.js"></script>
 </body>
 </html>

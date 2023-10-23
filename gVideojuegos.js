@@ -56,20 +56,23 @@ function listar(array){
     for(let i = 0; i < array.length; i++){
         let videojuego = document.createElement("li");
         let enlaceVer = document.createElement("a");
+        videojuego.setAttribute("class", "contVideojuego");
         enlaceVer.setAttribute("href", "#openModalVer");
         let botVer = document.createElement("button");
         botVer.setAttribute("onclick", "verModal(" + array[i].id + ")");
         let botEliminar = document.createElement("button");
         botEliminar.setAttribute("onclick", "eliminarVideojuego(" + array[i].id + ")");
+        let cont = document.createElement("div");
 
-        videojuego.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].nombre + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Genero:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].genero + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Valor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].valor;
+        videojuego.innerHTML = "<strong>Titulo: </strong>" + array[i].nombre + "<strong>Genero: </strong>" + array[i].genero + "<strong>Valor: </strong>" + Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(array[i].valor) + "<strong>Puntos: </strong>" + array[i].puntos;
         botVer.textContent = "Ver mas";
         botEliminar.textContent = "Eliminar";
-
+        
         enlaceVer.appendChild(botVer);
+        cont.appendChild(enlaceVer);
+        cont.appendChild(botEliminar);
+        videojuego.appendChild(cont);
         contenedor.appendChild(videojuego);
-        contenedor.appendChild(enlaceVer);
-        contenedor.appendChild(botEliminar);
     }
     listVideojuegos.appendChild(contenedor);
 }
@@ -136,7 +139,7 @@ function verModal(id){
     let div = document.createElement("div");
     for(let i = 0; i < videojuegos.length; i++){
         if(id == parseInt(videojuegos[i].id)){
-            div.innerHTML = '<div id="openModalVer" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1>' + videojuegos[i].nombre +'</h1><hr><h2>Genero: '+ videojuegos[i].genero +'</h2><h2>Valor: '+ videojuegos[i].valor +'</h2><h2>Puntos:  '+ videojuegos[i].puntos +'</h2></div></div>';
+            div.innerHTML = '<div id="openModalVer" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1 class="tituloModal">' + videojuegos[i].nombre +'</h1><hr><h2 class="contModal"><strong>Genero: </strong>'+ videojuegos[i].genero +'</h2><h2 class="contModal"><strong>Valor: </strong>'+ Intl.NumberFormat('es-ES', { style: 'currency', currency: 'COP',  minimumFractionDigits: 0, maximumFractionDigits: 0  }).format(videojuegos[i].valor) +'</h2><h2 class="contModal"><strong>Puntos: </strong>'+ videojuegos[i].puntos +'</h2></div></div>';
         }
     }
     listVideojuegos.appendChild(div);

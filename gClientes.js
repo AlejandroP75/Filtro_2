@@ -87,21 +87,24 @@ function listar(array){
     let contenedor = document.createElement("div");
     for(let i = 0; i < array.length; i++){
         let cliente = document.createElement("li");
+        cliente.setAttribute("class", "contCliente");
         let enlaceMod = document.createElement("a");
         enlaceMod.setAttribute("href", "#openModalMod");
         let botModificar = document.createElement("button");
         botModificar.setAttribute("onclick", "modificarModal(" + array[i].documento + ")");
         let botEliminar = document.createElement("button");
         botEliminar.setAttribute("onclick", "eliminarCliente(" + array[i].documento + ")");
+        let ordenar = document.createElement("div");
 
-        cliente.innerHTML = "Nombre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].nombre + " " + array[i].apellido + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Documento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[i].documento;
+        cliente.innerHTML = "<strong>Nom:</strong>" + array[i].nombre + " " + array[i].apellido + "<strong>Doc:</strong>" + array[i].documento+ "<strong>Tel:</strong>" + array[i].telefono+ "<strong>Correo:</strong>" + array[i].correo+ "<strong>Nacimiento:</strong>" + array[i].edad+ "<strong>Nacionalidad:</strong>" + array[i].nacionalidad;
         botModificar.textContent = "Modificar";
         botEliminar.textContent = "Eliminar";
 
+        ordenar.appendChild(enlaceMod);
+        ordenar.appendChild(botEliminar);
         enlaceMod.appendChild(botModificar);
+        cliente.appendChild(ordenar);
         contenedor.appendChild(cliente);
-        contenedor.appendChild(enlaceMod);
-        contenedor.appendChild(botEliminar);
     }
     listClientes.appendChild(contenedor);
 }
@@ -185,7 +188,7 @@ function modificarModal(documento){
     let div = document.createElement("div");
     for(let i = 0; i < clientes.length; i++){
         if( documento == parseInt(clientes[i].documento)){
-            div.innerHTML = '<div id="openModalMod" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1>Modificar cliente</h1><hr><form id="formularioModificar"><label for="modDoc">Numero de documento: </label><input type="number" id="modDoc" value="'+ clientes[i].documento +'"><br><label for="modNom">Nombre: </label><input type="text" id="modNom" value="'+ clientes[i].nombre +'"><br><label for="modApe">Apellido: </label><input type="text" id="modApe" value="'+ clientes[i].apellido +'"><br><label for="modTel">Telefono: </label><input type="number" id="modTel" value="'+ clientes[i].telefono +'"><br><label for="modCor">Correo electronico: </label><input type="email" id="modCor" value="'+ clientes[i].correo +'"><br><label for="modEdad">Fecha de nacimiento: </label><input type="date" id="modEdad" value="'+ clientes[i].edad +'"><br><label for="modNacio">Pais de nacimiento: </label><input type="text" id="modNacio" value="'+ clientes[i].nacionalidad +'"></form><a><button id="botModificarCli" onclick="modificarCliente('+ documento +')">Enviar</button></a></div></div>';
+            div.innerHTML = '<div id="openModalMod" class="modalDialog"><div><a href="#close" title="Close" class="close">X</a><h1 class="tituloModal">Modificar cliente</h1><hr><form id="formularioModificar"><div class="espForm"><label for="modDoc">Numero de documento: </label><input type="number" id="modDoc" value="'+ clientes[i].documento +'"></div><div class="espForm"><label for="modNom">Nombre: </label><input type="text" id="modNom" value="'+ clientes[i].nombre +'"></div><div class="espForm"><label for="modApe">Apellido: </label><input type="text" id="modApe" value="'+ clientes[i].apellido +'"></div><div class="espForm"><label for="modTel">Telefono: </label><input type="number" id="modTel" value="'+ clientes[i].telefono +'"></div><div class="espForm"><label for="modCor">Correo electronico: </label><input type="email" id="modCor" value="'+ clientes[i].correo +'"></div><div class="espForm"><label for="modEdad">Fecha de nacimiento: </label><input type="date" id="modEdad" value="'+ clientes[i].edad +'"></div><div class="espForm"><label for="modNacio">Pais de nacimiento: </label><input type="text" id="modNacio" value="'+ clientes[i].nacionalidad +'"></div></form><a><button id="botModificarCli" onclick="modificarCliente('+ documento +')">Enviar</button></a></div></div>';
         }
     }
     listClientes.appendChild(div);

@@ -1,4 +1,166 @@
-/*MODAL INGRESO*/
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Coming+Soon&display=swap');
+
+body{
+	margin: 0;
+}
+
+hr{
+	width: 90%;
+}
+
+nav{
+	background-color: #0F1C70;
+	display: flex;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logoInicio{
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.logo{
+	width: 100px;
+	margin: 10px;
+}
+
+nav .titulo{
+	color: white;
+	font-family: Caesar Dressing;
+	font-weight: lighter;
+	font-size: 55px;
+	margin: 0;
+}
+
+.titulo{
+	color: #0F1C70;
+	font-family: Caesar Dressing;
+	font-weight: lighter;
+	font-size: 55px;
+	margin: 0;
+}
+
+ul{
+	display: flex;
+
+}
+
+.navv{
+	color: #FFFFFF;
+	text-decoration: none;
+	list-style: none;
+	margin-right: 50px;
+	font-family: Coming Soon;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.navv:hover{
+	color: #BD1212;
+}
+
+.imgPrincipal{
+	width: 100%;
+	height: 400px;
+	display: block;
+}
+
+.contenido{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #e9e3e6;
+}
+
+.listas{
+	display: flex;
+	width: 100%;
+}
+
+.clientes{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.videojuegos{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#listVideojuegosCom{
+	width: 500px;
+	display: flex;
+	justify-content: center;
+}
+
+.subTitulo{
+	color: #0F1C70;
+	font-family: Coming Soon;
+	font-weight: bold;
+	font-size: 35px;
+}
+
+.contCliente{
+	font-family: Coming Soon;
+	color: #0F1C70;
+	list-style: none;
+	border: #FFFFFF 2px solid;
+	width: 800px;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px;
+	align-items: center;
+	font-size: 17px;
+	border-radius: 5px;
+}
+
+.contCliente button{
+	font-family: Coming Soon;
+	font-weight: bold;
+	margin-left: 5px;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.contCliente button:hover{
+	background-color: #BD1212;
+	color: #FFFFFF;
+}
+
+.contVideojuego{
+	font-family: Coming Soon;
+	color: #0F1C70;
+	list-style: none;
+	border: #FFFFFF 2px solid;
+	width: 800px;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px;
+	align-items: center;
+	font-size: 17px;
+	border-radius: 5px;
+}
+
+.contVideojuego button{
+	font-family: Coming Soon;
+	font-weight: bold;
+	margin-left: 5px;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.contVideojuego button:hover{
+	background-color: #BD1212;
+	color: #FFFFFF;
+}
 
 .modalDialog {
 	position: fixed;
@@ -13,17 +175,44 @@
 	transition: opacity 400ms ease-in;
 	pointer-events: none;
 }
+
 .modalDialog:target {
 	opacity:1;
 	pointer-events: auto;
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 550px;
 	position: relative;
-	margin: 15% auto;
+	margin: 10% auto;
 	padding: 20px;
-	background-color: #FFFFFF;
+	background-color: #0F1C70;
+	color: white;
+	border-radius: 20px;
+}
+
+.tituloModal{
+	text-align: center;
+	font-family: Caesar Dressing;
+	font-weight: lighter;
+	font-size: 40px;
+}
+
+.espForm {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: Coming Soon;
+	font-weight: bold;
+}
+
+.espForm label {
+	flex: 1;
+	margin-right: 10px;
+}
+
+.espForm input {
+	flex: 2;
 }
 .close {
 	background-color: #606061;
@@ -36,8 +225,40 @@
 	width: 24px;
 	text-decoration: none;
 	font-weight: bold;
+	border-radius: 100%;
 }
 .close:hover { 
 	background-color: white;
 	color: #606061;
+}
+
+.comprar{
+	width: 100%;
+	font-size: larger;
+	border-radius: 20px;
+	padding: 15px;
+	font-family: Coming Soon;
+	font-weight: bold;
+	padding-left: 650px;
+	padding-right: 650px;
+	margin: 20px;
+}
+
+.comprar:hover{
+	background-color: #BD1212;
+	color: white;
+}
+
+footer{
+	background-color: #0F1C70;
+	width: 100%;
+	display: flex;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	font-family: Coming Soon;
+	font-weight: bold;
 }

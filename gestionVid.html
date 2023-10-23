@@ -8,40 +8,63 @@
     <title>Gestión Videojuegos</title>
 </head>
 <body>
-    <h1>Gestión de videojuegos</h1>
-    <label for="aBuscarVid">Buscar videojuego: </label>
-    <input type="text" placeholder="Ingrese el nombre" id="aBuscarVid"><br>
-    <label for="selectOrdVid">Ordenar por</label>
-    <select name="selectOrdVid" id="selectOrdVid">
-        <option value="asend">Orden ascendente</option>
-        <option value="desen">Orden descendente</option>
-    </select><br>
-    <a href="#openModal"><button>Registrar nuevo videojuego</button></a>
-    <div id="openModal" class="modalDialog">
-        <div>
-            <a href="#close" title="Close" class="close">X</a>
-            <h1>Registrar videojuego</h1><hr>
-            <form id="formularioAñadirVid">
-                <label for="nueTit">Nombre: </label>
-                <input type="text" id="nueTit"><br>
-                <label for="nueGen">Genero: </label>
-                <select name="nueGen" id="nueGen">
-                    <option value="" selected>Seleccione un genero</option>
-                    <option value="Accion">Acción</option>
-                    <option value="Terror">Terror</option>
-                    <option value="Peleas">Peleas</option>
-                    <option value="Carreras">Carreras</option>
-                    <option value="Plataformas">Plataformas</option>
-                </select><br>
-                <label for="nueVal">Valor: </label>
-                <input type="number" id="nueVal"><br>
-                <label for="nuePun">Puntos: </label>
-                <input type="number" id="nuePun"><br>
-            </form>
-            <a><button id="botAñadirVideoj" onclick="registrarVideojuego()">Enviar</button></a>
+    <nav>
+        <a href="index.html" class="logoInicio">
+            <img src="img/favicon.png" alt="Logo" class="logo">
+            <h1 class="titulo">Campus GameSoft</h1>
+        </a>
+        <ul>
+            <a href="gestionCli.html" class="navv"><li>Gestión de clientes</li></a>
+            <a href="gestionVid.html" class="navv"><li>Gestión de videojuegos</li></a>
+            <a href="compraVid.html" class="navv"><li>Compra de videjuegos</li></a>
+            <a href="puntos.html" class="navv"><li>Puntos de fidelización</li></a>
+        </ul>
+    </nav>
+    <img src="img/videojuegos.png" class="imgPrincipal">
+    <div class="videojuegos">
+        <div class="herraBusq">
+            <label for="aBuscarVid">Buscar videojuego </label>
+            <input type="text" placeholder="Ingrese un dato" id="aBuscarVid"><br>
+            <label for="selectOrdVid">Ordenar por</label>
+            <select name="selectOrdVid" id="selectOrdVid">
+                <option value="asend">Orden ascendente</option>
+                <option value="desen">Orden descendente</option>
+            </select><br>
+        </div>
+        <div class="listVideo">
+            <br>
+            <h1 class="titulo">Gestión de videojuegos</h1><hr>
+            <br><a href="#openModal"><button class="registrar">Registrar nuevo videojuego</button></a><br>
+            <div id="openModal" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h1>Registrar videojuego</h1><hr>
+                    <form id="formularioAñadirVid">
+                        <label for="nueTit">Nombre: </label>
+                        <input type="text" id="nueTit"><br>
+                        <label for="nueGen">Genero: </label>
+                        <select name="nueGen" id="nueGen">
+                            <option value="" selected>Seleccione un genero</option>
+                            <option value="Accion">Acción</option>
+                            <option value="Terror">Terror</option>
+                            <option value="Peleas">Peleas</option>
+                            <option value="Carreras">Carreras</option>
+                            <option value="Plataformas">Plataformas</option>
+                        </select><br>
+                        <label for="nueVal">Valor: </label>
+                        <input type="number" id="nueVal"><br>
+                        <label for="nuePun">Puntos: </label>
+                        <input type="number" id="nuePun"><br>
+                    </form>
+                    <a><button id="botAñadirVideoj" onclick="registrarVideojuego()">Enviar</button></a>
+                </div>
+            </div>
+            <ul id="listVideojuegos"></ul>
         </div>
     </div>
-    <ul id="listVideojuegos"></ul>
+    <footer>
+        <h2>Desarrolado por: Alejandro Palacio Herrera</h2>
+    </footer>
     <script src="gVideojuegos.js"></script>
 </body>
 </html>

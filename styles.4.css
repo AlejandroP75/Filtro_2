@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Coming+Soon&display=swap');
+
+body{
+	margin: 0;
+}
+
+hr{
+	width: 90%;
+}
+
+nav{
+	background-color: #0F1C70;
+	display: flex;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logoInicio{
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.logo{
+	width: 100px;
+	margin: 10px;
+}
+
+nav .titulo{
+	color: white;
+	font-family: Caesar Dressing;
+	font-weight: lighter;
+	font-size: 55px;
+	margin: 0;
+}
+
+.titulo{
+	color: #0F1C70;
+	font-family: Caesar Dressing;
+	font-weight: lighter;
+	font-size: 55px;
+	margin: 0;
+}
+
+ul{
+	display: flex;
+
+}
+
+.navv{
+	color: #FFFFFF;
+	text-decoration: none;
+	list-style: none;
+	margin-right: 50px;
+	font-family: Coming Soon;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.navv:hover{
+	color: #BD1212;
+}
+
+.imgPrincipal{
+	width: 100%;
+	height: 400px;
+	display: block;
+}
+
+.puntos{
+    background-color: #e9e3e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#listaPuntosClientes{
+    margin: 0;
+}
+
+.contPuntos{
+	font-family: Coming Soon;
+	color: #0F1C70;
+	list-style: none;
+	border: #FFFFFF 2px solid;
+	width: 1500px;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px;
+	align-items: center;
+	font-size: 17px;
+	border-radius: 5px;
+}
+
+.contPuntos button{
+	font-family: Coming Soon;
+	font-weight: bold;
+	margin-left: 5px;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.contPuntos button:hover{
+	background-color: #BD1212;
+	color: #FFFFFF;
+}
+
+footer{
+	background-color: #0F1C70;
+	width: 100%;
+	display: flex;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	font-family: Coming Soon;
+	font-weight: bold;
+}
+
+.resaltar{
+    color: red;
+    font-size: larger;
+}

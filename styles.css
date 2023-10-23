@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Coming+Soon&display=swap');
+
+
+body{
+    display: flex;
+    height: 946px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(img/cool-background.png);
+}
+
+h1{
+    font-size: 100px;
+    font-family: Caesar Dressing;
+    font-weight: lighter;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 150px;
+    color: white;
+}
+
+button{
+    padding: 25px;
+    border-radius: 20px;
+    font-size: 25px;
+    font-family: Coming Soon;
+    font-weight: bold;
+    border: 2px white solid;
+}
+
+button:hover{
+    color: white;
+    background-color: #BD1212;
+    border: 2px white solid;
+
+}
+
+div{
+    display: flex;
+    width: 75%;
+    justify-content: space-between;
+}
