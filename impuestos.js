@@ -4,7 +4,6 @@ function obtenerVideojuegosGuardados() {
     const videojuegosGuardados = localStorage.getItem("videojuegos");
     if (videojuegosGuardados) {
         videojuegosCom = JSON.parse(videojuegosGuardados);
-        listarVid(videojuegosCom);
     }
 }
 

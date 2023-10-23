@@ -1,6 +1,7 @@
 let listClientesCom = document.getElementById("listClientesCom");
 let listVideojuegosCom = document.getElementById("listVideojuegosCom");
 let modalFactura = document.getElementById("modalFactura");
+let botonComprar = document.getElementById("botonComprar");
 
 let clientesCom = [];
 let videojuegosCom = [];
@@ -24,6 +25,9 @@ function obtenerVideojuegosGuardados() {
 obtenerClientesGuardados();
 obtenerVideojuegosGuardados();
 
+
+import { sacarIVA } from "./impuestos.js";
+import { sacarImpuestoEspecial } from "./impuestos.js";
 
 function listarCli(array){
     while(listClientesCom.firstChild){
@@ -104,8 +108,8 @@ function comprar(){
         if(videojuegoCom.checked){
             nombre = videojuegosCom[i].nombre;
             valor = videojuegosCom[i].valor;
-            impIVA = videojuegosCom[i].valor * 0.16;
-            impEs = videojuegosCom[i].valor * 0.04;
+            impIVA = sacarIVA();
+            impEs = sacarImpuestoEspecial();
             puntos = videojuegosCom[i].puntos;
         }
     }
@@ -140,3 +144,5 @@ function guardarClientes() {
     }));
     localStorage.setItem("clientes", JSON.stringify(clientesJSON));
 }
+
+botonComprar.addEventListener("click", comprar);
