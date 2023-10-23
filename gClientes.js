@@ -22,7 +22,7 @@ class cliente {
         this.nacionalidad = nacionalidad;
         this.puntos = puntos;
     }
-    modificar(documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos){
+    modificar(documento, nombre, apellido, telefono, correo, edad, nacionalidad){
         this.documento = documento;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,7 +30,10 @@ class cliente {
         this.correo = correo;
         this.edad = edad;
         this.nacionalidad = nacionalidad;
-        this.puntos = puntos;
+    }
+    static fromJSON(json) {
+        const { documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos } = JSON.parse(json);
+        return new cliente(documento, nombre, apellido, telefono, correo, edad, nacionalidad, puntos);
     }
 }
 
@@ -59,10 +62,23 @@ function obtenerOrdenSeleccionadoGuardado() {
 function obtenerClientesGuardados() {
     const clientesGuardados = localStorage.getItem("clientes");
     if (clientesGuardados) {
-        clientes = JSON.parse(clientesGuardados);
+        const clientesJSON = JSON.parse(clientesGuardados);
+        clientes = clientesJSON.map(json => {
+            return new cliente(
+                json.documento,
+                json.nombre,
+                json.apellido,
+                json.telefono,
+                json.correo,
+                json.edad,
+                json.nacionalidad,
+                json.puntos
+            );
+        });
         listar(clientes);
     }
 }
+
 
 function listar(array){
     while(listClientes.firstChild){
@@ -203,7 +219,7 @@ function modificarCliente(documento){
     for(let i = 0; i < clientes.length; i++){
         if(documento == clientes[i].documento){
             documento = modDoc.value;
-            clientes[i].modificar(modDoc.value, modNom.value, modApe.value, modTel.value, modCor.value, modEdad.value, modNacio.value, 0);
+            clientes[i].modificar(modDoc.value, modNom.value, modApe.value, modTel.value, modCor.value, modEdad.value, modNacio.value);
             
         }
     }
@@ -222,11 +238,21 @@ function eliminarCliente(documento){
 }
 
 function guardarOrdenSeleccionado() {
-    localStorage.setItem("ordenSeleccionado", selectOrd.value);
+    localStorage.setItem("ordenSeleccionadoCli", selectOrd.value);
 }
 
 function guardarClientes() {
-    localStorage.setItem("clientes", JSON.stringify(clientes));
+    const clientesJSON = clientes.map(cliente => ({
+        documento: cliente.documento,
+        nombre: cliente.nombre,
+        apellido: cliente.apellido,
+        telefono: cliente.telefono,
+        correo: cliente.correo,
+        edad: cliente.edad,
+        nacionalidad: cliente.nacionalidad,
+        puntos: cliente.puntos
+    }));
+    localStorage.setItem("clientes", JSON.stringify(clientesJSON));
 }
 
 aBuscarCli.addEventListener("input", buscar);
@@ -236,3 +262,4 @@ selectOrd.addEventListener("change", function () {
     ordenar();
 });
 document.addEventListener("DOMContentLoaded", ordenar);
+document.addEventListener("DOMContentLoaded", guardarClientes);

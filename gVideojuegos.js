@@ -153,7 +153,7 @@ function eliminarVideojuego(id){
 }
 
 function guardarOrdenSeleccionado() {
-    localStorage.setItem("ordenSeleccionado", selectOrdVid.value);
+    localStorage.setItem("ordenSeleccionadoVid", selectOrdVid.value);
 }
 
 function guardarVideojuegos() {
@@ -167,3 +167,4 @@ selectOrdVid.addEventListener("change", function () {
     ordenar();
 });
 document.addEventListener("DOMContentLoaded", ordenar);
+document.addEventListener("DOMContentLoaded", guardarVideojuegos);
